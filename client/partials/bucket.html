@@ -1,0 +1,18 @@
+<div class="container profile-container">
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="well">
+        <button type="button" class="btn btn-success" ng-click="listS3BucketContent()">List <b>{{bucketName}}</b> Content</button>
+				<br>
+				<br>
+				<div class="list-group s3-buckets" ng-repeat="bucketObject in bucketObjects track by $index">
+					<div class="list-group-item list-group-item-action s3-bucket" ng-click="downloadObject(bucketObject)">{{bucketObject.Key}} : {{bucketObject.ETag}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<button class="btn btn-danger" ng-click="signout()">Sign Out</button>
+	</div>
+</div>
+<!-- <a href="/logout"><button type="button" class="btn btn-success" ng-click="signout()">SingOut</button></a> -->

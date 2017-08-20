@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="well">
+            <form ng-hide="confirmRegistrationForm">
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="text" id="email" name="email" ng-model="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" ng-model="phone" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    <input type="text" id="username" name="username" ng-model="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" ng-model="password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="submitForm()">Sign Up</button>
+            </form>
+            <form ng-hide="!confirmRegistrationForm">
+                <div class="form-group">
+                    <label for="code">Enter Code</label>
+                    <input type="text" id="code" name="code" ng-model="code" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="confirmRegistration()">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
