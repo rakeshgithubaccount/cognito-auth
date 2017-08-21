@@ -1,0 +1,15 @@
+ <h1 class="page-header">Dicom List</h1>
+<div class="container profile-container">
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="well">
+				<button type="button" class="btn btn-success" ng-click="listS3Buckets()">ListS3Buckets</button>
+				<br>
+				<br>
+				<div class="list-group s3-buckets" ng-repeat="bucket in bucketList track by $index">
+					<div class="list-group-item list-group-item-action s3-bucket" ng-click="showBucket(bucket)">{{bucket.Name}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

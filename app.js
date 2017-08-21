@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
-var cors = require('cors')
+var cors = require('cors');
+const fileUpload = require('express-fileupload');
 
 var index = require('./routes/index');
 var cognitoRoutes = require('./routes/cognito');
@@ -32,6 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(expressSession({secret: 'mysecret', resave: false, saveUninitialized: false}));
+app.use(fileUpload());
 
 app.use(express.static(path.join(__dirname, 'client')));
 

@@ -75,6 +75,34 @@
 
         return deferred.promise;
       };
+        
+        /*** Upload to S3 service start*/
+        this.uploadToBucket = function(file) {
+        var deferred = $q.defer();
+
+        var req = {
+           method: 'POST',
+           url: '/cognito/uploadFile',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            data: {
+             'file': file
+           }
+        }
+
+        $http(req).then(function(result){
+          deferred.resolve(result);
+        }, function(err){
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
+      };
+        
+        /*** Upload to S3 service end*/
+        
+        
 
       this.getS3Buckets = function() {
         var deferred = $q.defer();

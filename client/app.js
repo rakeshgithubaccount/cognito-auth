@@ -19,15 +19,37 @@
             controller: 'signupController'
         };
 
-        var s3BucketsState = {
-            name: 's3Buckets',
-            url: '/s3Buckets',
+        var dashboard = {
+            name: 'dashboard',
+            url: '/dashboard',
             templateUrl: 'templates/buckets.html',
             controller: 'bucketsController'
+        };
+        var list = {
+            name: 'list',
+            parent: dashboard,
+            url: '/list',
+            templateUrl: 'partials/list.html'
+           
+        };
+        var upload = {
+            name: 'upload',
+            parent: dashboard,
+            url: '/upload',
+            templateUrl: 'partials/upload.html'
+           
+        };
+        var deleteImage = {
+            name: 'delete',
+            parent: dashboard,
+            url: '/delete',
+            templateUrl: 'partials/delete.html'
+            
         };
 
         var s3BucketState = {
             name: 's3Bucket',
+             parent: dashboard,
             url: '/s3Buckets/s3Bucket/:bucketName',
             templateUrl: 'templates/bucket.html',
             controller: 'bucketController'
@@ -35,7 +57,11 @@
 
         $stateProvider.state(signupState);
         $stateProvider.state(signinState);
-        $stateProvider.state(s3BucketsState);
+        $stateProvider.state(dashboard);
+        $stateProvider.state(list);
+        $stateProvider.state(upload);
+        $stateProvider.state(deleteImage);
+        
         $stateProvider.state(s3BucketState);
     });
 })(window.angular);
