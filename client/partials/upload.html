@@ -10,8 +10,10 @@
       id='uploadForm' 
       action='http://localhost:3000/cognito/uploadFile' 
       method='post' 
-      encType="multipart/form-data">
+      encType="multipart/form-data" target="_blank">
         <input type="file" name="sampleFile" file/>
-        <input type='submit' value='Upload!' />
-    </form>    
+         <br>
+        
+    </form>   
+    <input type='button' value='Upload!' class="btn btn-success" ng-click="upload()"/>
 </div>

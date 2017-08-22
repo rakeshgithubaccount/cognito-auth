@@ -168,20 +168,12 @@ router.post('/uploadFile', function(req, res, next) {
           // Your S3 code here...
           // Instantiate aws sdk service objects now that the credentials have been updated.
           var s3 = new AWS.S3();
-         /* var params = {};
-          s3.listBuckets(params, function(err, bucketData) {
-            if(err) {
-              console.error(err);
-              res.status(400).send(err);
-            }
-            res.json(bucketData);
-          });*/
+       
         var bucket = new AWS.S3({ params: { Bucket: "rakesh-s3-bucket" } });
 //            console.log(req.files.file.name+"@@@")
           var params = { Key: req.files.sampleFile.name, ContentType: req.files.sampleFile.mimetype, Body: req.files.sampleFile.data, ServerSideEncryption: 'AES256' };
             
            bucket.putObject(params, function(err, data) {
-               console.log(err);
           
            if (err) {
                console.log(err)
@@ -191,12 +183,9 @@ router.post('/uploadFile', function(req, res, next) {
           else {
             // Upload Successfully Finished
             console.log('File Uploaded Successfully', 'Done');
-
+              res.send(data);
             // Reset The Progress Bar
-           /* setTimeout(function() {
-              //$scope.uploadProgress = 0;
-              $scope.$digest();
-            }, 4000);*/
+
          }
         })
             

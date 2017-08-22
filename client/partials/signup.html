@@ -1,32 +1,35 @@
 <div class="container">
     <div class="row">
         <div class="well">
-            <form ng-hide="confirmRegistrationForm">
+            <div id="fullscreen_bg" class="fullscreen_bg">
+            <form ng-hide="confirmRegistrationForm" class="form-signin">
+                  <h1 class="form-signin-heading text-muted">Register</h1>
                 <div class="form-group">
-                    <label for="email">E-Mail</label>
-                    <input type="text" id="email" name="email" ng-model="email" class="form-control">
+                   <!-- <label for="email">E-Mail</label>-->
+                    <input type="text" id="email" name="email" ng-model="email" class="form-control" placeholder="E-Mail">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" id="phone" name="phone" ng-model="phone" class="form-control">
+                   <!-- <label for="phone">Phone</label>-->
+                    <input type="text" id="phone" name="phone" ng-model="phone" class="form-control" placeholder="Phone">
                 </div>
                 <div class="form-group">
-                    <label for="username">User Name</label>
-                    <input type="text" id="username" name="username" ng-model="username" class="form-control">
+                    <!--<label for="username">User Name</label>-->
+                    <input type="text" id="username" name="username" ng-model="username" class="form-control" placeholder="User Name">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" ng-model="password" class="form-control">
+                    <!--<label for="password">Password</label>-->
+                    <input type="password" id="password" name="password" ng-model="password" class="form-control" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-primary" ng-click="submitForm()">Sign Up</button>
             </form>
-            <form ng-hide="!confirmRegistrationForm">
+            <form ng-hide="!confirmRegistrationForm" class="form-signin">
                 <div class="form-group">
-                    <label for="code">Enter Code</label>
-                    <input type="text" id="code" name="code" ng-model="code" class="form-control">
+                    <!--<label for="code">Enter Code</label>-->
+                    <input type="text" id="code" name="code" ng-model="code" class="form-control" placeholder="Enter Code">
                 </div>
                 <button type="submit" class="btn btn-primary" ng-click="confirmRegistration()">Submit</button>
             </form>
+            </div>
         </div>
     </div>
 </div>
