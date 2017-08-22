@@ -150,7 +150,7 @@ router.post('/uploadFile', function(req, res, next) {
           res.status(400).send(err);
       }
       console.log('session validity: ' + session.isValid());
-    
+
         if(session.isValid()) {
         //POTENTIAL: Region needs to be set if not already set previously elsewhere.
         AWS.config.region = Auth.AWS.Region;
@@ -168,13 +168,13 @@ router.post('/uploadFile', function(req, res, next) {
           // Your S3 code here...
           // Instantiate aws sdk service objects now that the credentials have been updated.
           var s3 = new AWS.S3();
-       
+
         var bucket = new AWS.S3({ params: { Bucket: "rakesh-s3-bucket" } });
 //            console.log(req.files.file.name+"@@@")
           var params = { Key: req.files.sampleFile.name, ContentType: req.files.sampleFile.mimetype, Body: req.files.sampleFile.data, ServerSideEncryption: 'AES256' };
-            
+
            bucket.putObject(params, function(err, data) {
-          
+
            if (err) {
                console.log(err)
                res.status(400).send('err');
@@ -188,18 +188,18 @@ router.post('/uploadFile', function(req, res, next) {
 
          }
         })
-            
+
         });
       }
       else {
         res.status(400).send('Session invalid');
       }
-          
+
   });
-    
-    
+
+
 });
-/*** Upload Code end*/    
+/*** Upload Code end*/
 
 
 router.get('/buckets', function(req, res, next) {
@@ -347,9 +347,9 @@ router.get('/buckets/bucket/:bucketName/:objectKey', function(req, res, next) {
             if (err) {
                res.status(400).send('err'); // an error occurred
             }
-            res.attachment(objectKey);
-            res.send(data.Body);
-            // res.send(data);           // successful response
+            // res.attachment(objectKey);
+            // res.send(data.Body);
+            res.send(data);           // successful response
           });
         });
       }
@@ -359,16 +359,6 @@ router.get('/buckets/bucket/:bucketName/:objectKey', function(req, res, next) {
 
   });
 
-});
-
-router.post('/getUsername', isLoggedIn, function(req, res, next) {
-  // var cognitoUser = userPool.getCurrentUser();
-  var userData = {
-    Username : req.session.cognitoUserName,
-    Pool : userPool
-  };
-  var cognitoUser = new AWSCognito.CognitoUser(userData);
-  res.send(cognitoUser.username);
 });
 
 module.exports = router;

@@ -30,38 +30,46 @@
             parent: dashboard,
             url: '/list',
             templateUrl: 'partials/list.html'
-           
+
         };
         var upload = {
             name: 'upload',
             parent: dashboard,
             url: '/upload',
             templateUrl: 'partials/upload.html'
-           
+
         };
         var deleteImage = {
             name: 'delete',
             parent: dashboard,
             url: '/delete',
             templateUrl: 'partials/delete.html'
-            
+
         };
 
         var s3BucketState = {
             name: 's3Bucket',
-             parent: dashboard,
+            parent: dashboard,
             url: '/s3Buckets/s3Bucket/:bucketName',
             templateUrl: 'templates/bucket.html',
             controller: 'bucketController'
         };
 
-        $stateProvider.state(signupState);
-        $stateProvider.state(signinState);
-        $stateProvider.state(dashboard);
-        $stateProvider.state(list);
-        $stateProvider.state(upload);
-        $stateProvider.state(deleteImage);
-        
-        $stateProvider.state(s3BucketState);
+        var fileDisplayState = {
+            name: 'displayImage',
+            parent: dashboard,
+            url: '/s3Buckets/s3Bucket/:bucketName/:fileName',
+            templateUrl: 'templates/display-image.html',
+            controller: 'displayImageController'
+        }
+
+        $stateProvider.state(signupState)
+          .state(signinState)
+          .state(dashboard)
+          .state(list)
+          .state(upload)
+          .state(deleteImage)
+          .state(s3BucketState)
+          .state(fileDisplayState);
     });
 })(window.angular);

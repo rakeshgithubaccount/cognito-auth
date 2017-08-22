@@ -75,7 +75,7 @@
 
         return deferred.promise;
       };
-        
+
         /*** Upload to S3 service start*/
         this.uploadToBucket = function(file) {
         var deferred = $q.defer();
@@ -99,10 +99,10 @@
 
         return deferred.promise;
       };
-        
+
         /*** Upload to S3 service end*/
-        
-        
+
+
 
       this.getS3Buckets = function() {
         var deferred = $q.defer();
@@ -138,15 +138,15 @@
         return deferred.promise;
       }
 
-      this.downloadObject = function(bucketName, bucketObject) {
+      this.downloadObject = function(bucketName, Key) {
         var deferred = $q.defer();
 
         var req = {
            method: 'GET',
-           headers: {
-             'Content-Type': undefined
-           },
-           url: '/cognito/buckets/bucket/' + bucketName + '/' + bucketObject.Key
+          //  headers: {
+          //    'Content-Type': undefined
+          //  },
+           url: '/cognito/buckets/bucket/' + bucketName + '/' + Key
         }
 
         $http(req).then(function(result) {

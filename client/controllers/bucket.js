@@ -17,13 +17,14 @@
         });
       }
 
-      $scope.downloadObject = function(bucketObject) {
-        var resultPromise = authService.downloadObject($scope.bucketName, bucketObject);
-        resultPromise.then(function(result) {
-          console.log(result);
-        }, function(err) {
-          console.error('Failed: ' + (err.data.message || err.data));
-        });
+      $scope.viewObject = function(bucketObject) {
+        $state.go('displayImage', {'bucketName': $scope.bucketName, 'fileName': bucketObject.Key});
+        // var resultPromise = authService.downloadObject($scope.bucketName, bucketObject.Key);
+        // resultPromise.then(function(result) {
+        //   console.log(result);
+        // }, function(err) {
+        //   console.error('Failed: ' + (err.data.message || err.data));
+        // });
       }
   }]);
 })(window.angular);
