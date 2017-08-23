@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    var myApp = angular.module('AWS_POC', ['ui.router']);
+    var myApp = angular.module('AWS_POC', ['ui.router', 'ngFileUpload']);
     window.myApp = myApp;
 
     myApp.config(function($stateProvider) {
@@ -30,7 +30,6 @@
             parent: dashboard,
             url: '/list',
             templateUrl: 'partials/list.html'
-
         };
         var upload = {
             name: 'upload',

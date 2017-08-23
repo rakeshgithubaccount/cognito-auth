@@ -1,19 +1,25 @@
 (function(angular) {
   'use strict';
   var myApp = angular.module('AWS_POC');
-  myApp.controller('uploadController', function($scope, $state, authService) {
+  myApp.controller('uploadController', ['$scope', '$state', '$http', 'authService', 'Upload', function($scope, $state, $http, authService, Upload) {
 
-     // $scope.filename = {};
       $scope.upload = function() {
-//          var resultPromise = authService.uploadToBucket($scope.file);
-//          resultPromise.then(function(result) {
-//            console.log('Successfully logged in');
-//          }, function(err) {
-//            console.error('Failed: ' + (err.data.message || err.data));
-//          });
-            document.getElementById('uploadForm').submit(function () {                
-                return false;
-            });
-      }
-  });
+          Upload.upload({
+              url: '/cognito/uploadFile', //webAPI exposed to upload the file
+              data: {file:$scope.file} //pass file as data, should be user ng-model
+          }).then(function (resp) { //upload function returns a promise
+              console.log(resp);
+              if(resp.data.ETag) {
+                console.log('file uploaded Successfully')
+              }
+          }, function (resp) { //catch error
+              console.log(resp);
+          }, function (evt) {
+              console.log(evt);
+              // var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+              // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+              // vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+          });
+      };
+  }]);
 })(window.angular);

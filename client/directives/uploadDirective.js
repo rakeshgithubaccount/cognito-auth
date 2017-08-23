@@ -11,9 +11,7 @@ myApp.directive('file', function() {
       el.bind('change', function(event){
         var files = event.target.files;
         var file = files[0];
-        scope.file = file;
         scope.$parent.file = file;
-        scope.$apply();
       });
     }
   };

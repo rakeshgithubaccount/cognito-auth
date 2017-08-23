@@ -139,63 +139,62 @@ router.post('/uploadFile', function(req, res, next) {
     if(!req.session.cognitoUserName) {
         res.status(400).send('Session invalid');
     }
+
     var userData = {
         Username : req.session.cognitoUserName,
         Pool : userPool
     };
-     var cognitoUser = new AWSCognito.CognitoUser(userData);
-      cognitoUser.getSession(function(err, session) {
-      if (err) {
-          console.log(err);
-          res.status(400).send(err);
-      }
-      console.log('session validity: ' + session.isValid());
+    var cognitoUser = new AWSCognito.CognitoUser(userData);
+    cognitoUser.getSession(function(err, session) {
+        if (err) {
+            console.log(err);
+            res.status(400).send(err);
+        }
+        console.log('session validity: ' + session.isValid());
 
-        if(session.isValid()) {
-        //POTENTIAL: Region needs to be set if not already set previously elsewhere.
-        AWS.config.region = Auth.AWS.Region;
+          if(session.isValid()) {
+          //POTENTIAL: Region needs to be set if not already set previously elsewhere.
+          AWS.config.region = Auth.AWS.Region;
 
-        // Add the User's Id Token to the Cognito credentials login map.
-        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-          IdentityPoolId: Auth.AWS.IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
-          Logins: {
-            // 'cognito-idp.<region>.amazonaws.com/<YOUR_USER_POOL_ID>': session.getIdToken().getJwtToken()
-            ['cognito-idp.' + Auth.AWS.Region + '.amazonaws.com/' + Auth.AWS.UserPoolId]: session.getIdToken().getJwtToken()
-          }
-        });
+          // Add the User's Id Token to the Cognito credentials login map.
+          AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: Auth.AWS.IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
+            Logins: {
+              // 'cognito-idp.<region>.amazonaws.com/<YOUR_USER_POOL_ID>': session.getIdToken().getJwtToken()
+              ['cognito-idp.' + Auth.AWS.Region + '.amazonaws.com/' + Auth.AWS.UserPoolId]: session.getIdToken().getJwtToken()
+            }
+          });
 
-        AWS.config.credentials.refresh(function(){
-          // Your S3 code here...
-          // Instantiate aws sdk service objects now that the credentials have been updated.
-          var s3 = new AWS.S3();
+          AWS.config.credentials.refresh(function(){
+              // Your S3 code here...
+              // Instantiate aws sdk service objects now that the credentials have been updated.
+              var s3 = new AWS.S3();
 
-        var bucket = new AWS.S3({ params: { Bucket: "rakesh-s3-bucket" } });
-//            console.log(req.files.file.name+"@@@")
-          var params = { Key: req.files.sampleFile.name, ContentType: req.files.sampleFile.mimetype, Body: req.files.sampleFile.data, ServerSideEncryption: 'AES256' };
+              var bucket = new AWS.S3({ params: { Bucket: "aws-poc-sample" } });
+      //            console.log(req.files.file.name+"@@@")
+                var params = { Key: req.files.file.name, ContentType: req.files.file.mimetype, Body: req.files.file.data, ServerSideEncryption: 'AES256' };
 
-           bucket.putObject(params, function(err, data) {
+                 bucket.putObject(params, function(err, data) {
+                     if (err) {
+                         console.log(err)
+                         res.status(400).send('err');
+                         console.log(err, err.stack); // an error occurred
+                     }
+                    else {
+                      // Upload Successfully Finished
+                      console.log('File Uploaded Successfully', 'Done');
+                        res.send(data);
+                      // Reset The Progress Bar
+                   }
+               });
 
-           if (err) {
-               console.log(err)
-               res.status(400).send('err');
-               console.log(err, err.stack); // an error occurred
-           }
-          else {
-            // Upload Successfully Finished
-            console.log('File Uploaded Successfully', 'Done');
-              res.send(data);
-            // Reset The Progress Bar
+          });
+        }
+        else {
+          res.status(400).send('Session invalid');
+        }
 
-         }
-        })
-
-        });
-      }
-      else {
-        res.status(400).send('Session invalid');
-      }
-
-  });
+    });
 
 
 });

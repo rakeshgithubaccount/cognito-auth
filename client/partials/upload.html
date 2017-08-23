@@ -1,19 +1,23 @@
 <div ng-controller="uploadController">
 <h1 class="page-header">Upload</h1>
 <div>Select the image file to upload in S3 Bucket</div>
-    
+
 <!--<div>
     <input class="bottom-marg-15" type="file" name="file" file/>
     <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
 </div>-->
-     <form ref='uploadForm' 
-      id='uploadForm' 
-      action='http://localhost:3000/cognito/uploadFile' 
-      method='post' 
-      encType="multipart/form-data" target="_blank">
-        <input type="file" name="sampleFile" file/>
+     <!-- <form ref='uploadForm'
+      id='uploadForm'
+      action='/cognito/uploadFile'
+      method='post'
+      encType="multipart/form-data">
          <br>
-        
-    </form>   
+
+         <input type="file" name="sampleFile" file/>
+         <input type='submit' value='Upload!' class="btn btn-success"/>
+    </form> -->
+    <input type="file" name="sampleFile" file/>
     <input type='button' value='Upload!' class="btn btn-success" ng-click="upload()"/>
+
+
 </div>

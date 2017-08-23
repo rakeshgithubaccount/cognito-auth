@@ -39,12 +39,19 @@
         </div>
 
     </ui-view>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
     <script type="text/javascript" src="/lib/aws-cognito-sdk.min.js"></script>
     <script type="text/javascript" src="/lib/amazon-cognito-identity.min.js"></script>
     <script type="text/javascript" src="/lib/aws-sdk.js"></script>
 
     <script type="text/javascript" src="/lib/angular.js"></script>
     <script type="text/javascript" src="/lib/angular-ui-router.js"></script>
+
+    <script src="/node_modules/ng-file-upload/dist/ng-file-upload-shim.js"></script> <!-- for no html5 browsers support -->
+    <script src="/node_modules/ng-file-upload/dist/ng-file-upload.js"></script>    
 
     <script type="text/javascript" src="/app.js"></script>
     <script type="text/javascript" src="/services/auth.js"></script>

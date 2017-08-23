@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var cors = require('cors');
+
 const fileUpload = require('express-fileupload');
 
 var index = require('./routes/index');
@@ -29,11 +30,12 @@ app.engine('html', require('ejs').renderFile);
 // })
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({ limit: '5mb', extended: false }));
 app.use(cookieParser());
 app.use(expressSession({secret: 'mysecret', resave: false, saveUninitialized: false}));
 app.use(fileUpload());
+
 
 app.use(express.static(path.join(__dirname, 'client')));
 
