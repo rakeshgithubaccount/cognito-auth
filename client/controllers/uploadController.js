@@ -10,14 +10,16 @@
           }).then(function (resp) { //upload function returns a promise
               console.log(resp);
               if(resp.data.ETag) {
-                console.log('file uploaded Successfully')
+                console.log('file uploaded Successfully');
+                $scope.message = 'file uploaded Successfully';
               }
           }, function (resp) { //catch error
               console.log(resp);
+              $scope.message = 'error occurred while uploading';
           }, function (evt) {
               console.log(evt);
-              // var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-              // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+              var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+              console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
               // vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
           });
       };
