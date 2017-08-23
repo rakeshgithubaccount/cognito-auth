@@ -2,7 +2,7 @@
   'use strict';
   var myApp = angular.module('AWS_POC');
   myApp.controller('uploadController', ['$scope', '$state', '$http', 'authService', 'Upload', function($scope, $state, $http, authService, Upload) {
-
+$scope.showForm = true;
       $scope.upload = function() {
           Upload.upload({
               url: '/cognito/uploadFile', //webAPI exposed to upload the file
@@ -12,6 +12,7 @@
               if(resp.data.ETag) {
                 console.log('file uploaded Successfully');
                 $scope.message = 'file uploaded Successfully';
+                  $scope.showForm = false;
               }
           }, function (resp) { //catch error
               console.log(resp);

@@ -170,7 +170,7 @@ router.post('/uploadFile', function(req, res, next) {
               // Instantiate aws sdk service objects now that the credentials have been updated.
               var s3 = new AWS.S3();
 
-              var bucket = new AWS.S3({ params: { Bucket: "aws-poc-sample" } });
+              var bucket = new AWS.S3({ params: { Bucket: "rakesh-s3-bucket" } });
       //            console.log(req.files.file.name+"@@@")
                 var params = { Key: req.files.file.name, ContentType: req.files.file.mimetype, Body: req.files.file.data, ServerSideEncryption: 'AES256' };
 

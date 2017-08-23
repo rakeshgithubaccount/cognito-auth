@@ -96,10 +96,13 @@ input[type="submit"].btn-success:hover {
     background-color: #218838;
     border-color: #1e7e34;
 }
-form#uploadForm .btn{
+#uploadFormButton{
     width:60%;
     margin-top:20px;
 }
 form#uploadForm input[type="file"]{
         margin: 40px 0;
+}
+.afterSuccessfullUpload{
+    margin:40px;
 }

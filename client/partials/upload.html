@@ -1,4 +1,5 @@
 <div ng-controller="uploadController">
+    <div ng-show="showForm">
 <h1 class="page-header">Upload</h1>
 <div>Select the image file to upload in S3 Bucket</div>
 
@@ -16,10 +17,17 @@
          <input type="file" name="sampleFile" file/>
          <input type='submit' value='Upload!' class="btn btn-success"/>
     </form> -->
+    <br/><br/>
     <input type="file" name="sampleFile" file/>
-    <input type='button' value='Upload!' class="btn btn-success" ng-click="upload()"/>
+    <br/><br/><br/>
+    <input type='button' value='Upload!' class="btn btn-success" id="uploadFormButton" ng-click="upload()"/>
     <div class="">
       {{message}}
+    </div>
+    </div>
+    <div ng-hide="showForm" class="afterSuccessfullUpload">
+        <h1 class="page-header">Upload Successful</h1>
+        <img src="/images/smiley.png" width=200 height="200"/>
     </div>
 
 </div>
