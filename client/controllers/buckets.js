@@ -4,6 +4,12 @@
   myApp.controller('bucketsController', ['$scope', '$state', '$window', 'authService', function($scope, $state, $window, authService) {
       $scope.bucketList = [];
 
+      console.log('bucketsController');
+
+      $scope.$on('$viewContentLoaded', function() {
+          console.log('viewContentLoaded');
+      });
+
       $scope.signout = function() {
         var resultPromise = authService.signoutFromCognito();
         resultPromise.then(function(result) {

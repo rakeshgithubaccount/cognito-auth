@@ -3,9 +3,7 @@
   var myApp = angular.module('AWS_POC');
   myApp.directive('buckets', function() {
     function link(scope, element, attrs) {
-      element.on('$destroy', function() {
-        //
-      });
+      console.log('bucket directive');
     }
 
     return {

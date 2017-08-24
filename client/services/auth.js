@@ -110,6 +110,26 @@
         return deferred.promise;
       }
 
+      this.downloadObject = function(bucketName, Key) {
+        var deferred = $q.defer();
+
+        var req = {
+           method: 'GET',
+          //  headers: {
+          //    'Content-Type': undefined
+          //  },
+           url: '/cognito/buckets/bucket/' + bucketName + '/' + Key
+        }
+
+        $http(req).then(function(result) {
+          deferred.resolve(result);
+        }, function(err){
+          deferred.reject(err);
+        });
+
+        return deferred.promise;
+      }
+      
       this.deleteS3BucketObject = function(bucketName, objectName) {
         var deferred = $q.defer();
         var req = {

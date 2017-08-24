@@ -6,6 +6,8 @@
       $scope.bucketName = $stateParams.bucketName;
       console.log($stateParams);
 
+      console.log('bucketController');
+
       $scope.listS3BucketContent = function() {
         var resultPromise = authService.getS3BucketObjects($scope.bucketName);
         resultPromise.then(function(result) {

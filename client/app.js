@@ -8,22 +8,22 @@
         var signinState = {
             name: 'signin',
             url: '/signin',
-            templateUrl: 'templates/signin.html',
-            controller: 'signinController'
+            templateUrl: 'templates/signin.html'
+            // controller: 'signinController'
         };
 
         var signupState = {
             name: 'signup',
             url: '/signup',
-            templateUrl: 'templates/signup.html',
-            controller: 'signupController'
+            templateUrl: 'templates/signup.html'
+            // controller: 'signupController'
         };
 
         var dashboard = {
             name: 'dashboard',
             url: '/dashboard',
-            templateUrl: 'templates/buckets.html',
-            controller: 'bucketsController'
+            templateUrl: 'templates/buckets.html'
+            // controller: 'bucketsController'
         };
         var list = {
             name: 'list',
@@ -50,16 +50,16 @@
             name: 's3Bucket',
             parent: dashboard,
             url: '/s3Buckets/s3Bucket/:bucketName',
-            templateUrl: 'templates/bucket.html',
-            controller: 'bucketController'
+            templateUrl: 'templates/bucket.html'
+            // controller: 'bucketController'
         };
 
         var fileDisplayState = {
             name: 'displayImage',
             parent: dashboard,
             url: '/s3Buckets/s3Bucket/:bucketName/:fileName',
-            templateUrl: 'templates/display-image.html',
-            controller: 'displayImageController'
+            templateUrl: 'templates/display-image.html'
+            // controller: 'displayImageController'
         }
 
         $stateProvider.state(signupState)

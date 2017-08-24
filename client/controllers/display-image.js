@@ -5,7 +5,7 @@
       $scope.bucketName = $stateParams.bucketName;
       $scope.fileName = $stateParams.fileName;
       console.log($stateParams);
-      // console.log(getFileData);
+      console.log('displayImageController');
 
       $scope.viewObject = function() {
         var resultPromise = authService.downloadObject($scope.bucketName, $scope.fileName);

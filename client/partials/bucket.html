@@ -3,13 +3,13 @@
 		<button type="button" class="btn btn-success" ng-click="listS3BucketContent()">List <b>{{bucketName}}</b> Content</button>
 	</div>
 	<div class="row">
-		<div class="well col-sm-8">
+		<div class="well col-sm-10">
 			<br>
 			<br>
 			<div class="list-group s3-buckets" ng-repeat="bucketObject in bucketObjects track by $index">
 				<div class="list-group-item list-group-item-action s3-bucket">
-					<span class="pull-left" ng-click="viewObject(bucketObject)">{{bucketObject.Key}} : {{bucketObject.ETag}}</span>
-					<button class="btn btn-danger pull-right" type="button" ng-click="deleteObject(bucketObject)">Delete</button>
+					<span class="pull-left col-sm-10" ng-click="viewObject(bucketObject)">{{bucketObject.Key}}</span>
+					<button class="btn btn-danger pull-right col-sm-2" type="button" ng-click="deleteObject(bucketObject)">Delete</button>
 				</div>
 			</div>
 		</div>
