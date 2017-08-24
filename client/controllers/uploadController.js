@@ -4,7 +4,6 @@
   myApp.controller('uploadController', ['$scope', '$state', '$http', 'authService', function($scope, $state, $http, authService) {
 $scope.showForm = true;
       $scope.upload = function() {
-
           var config = {
              method: 'POST',
              url: '/cognito/uploadFile',

@@ -15,7 +15,7 @@
         }, function(err) {
           console.error('Failed: ' + (err.data.message || err.data));
         });
-      }
+      };
 
       $scope.viewObject = function(bucketObject) {
         $state.go('displayImage', {'bucketName': $scope.bucketName, 'fileName': bucketObject.Key});
@@ -25,6 +25,18 @@
         // }, function(err) {
         //   console.error('Failed: ' + (err.data.message || err.data));
         // });
+      };
+
+      $scope.deleteObject = function(bucketObject) {
+        var resultPromise = authService.deleteS3BucketObject($scope.bucketName, bucketObject.Key);
+        resultPromise.then(function(result) {
+          console.log('SUCCESS');
+          console.log(result);
+          $scope.listS3BucketContent();
+        }, function(err) {
+          console.error('Failed: ' + (err.data.message || err.data));
+        });
       }
+
   }]);
 })(window.angular);

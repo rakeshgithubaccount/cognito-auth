@@ -1,17 +1,21 @@
 <div class="container profile-container">
 	<div class="row">
-		<div class="col-sm-6">
-			<div class="well">
-
-        <button type="button" class="btn btn-success" ng-click="listS3BucketContent()">List <b>{{bucketName}}</b> Content</button>
-				<br>
-				<br>
-				<div class="list-group s3-buckets" ng-repeat="bucketObject in bucketObjects track by $index">
-					<div class="list-group-item list-group-item-action s3-bucket" ng-click="viewObject(bucketObject)">{{bucketObject.Key}} : {{bucketObject.ETag}}</div>
+		<button type="button" class="btn btn-success" ng-click="listS3BucketContent()">List <b>{{bucketName}}</b> Content</button>
+	</div>
+	<div class="row">
+		<div class="well col-sm-8">
+			<br>
+			<br>
+			<div class="list-group s3-buckets" ng-repeat="bucketObject in bucketObjects track by $index">
+				<div class="list-group-item list-group-item-action s3-bucket">
+					<span class="pull-left" ng-click="viewObject(bucketObject)">{{bucketObject.Key}} : {{bucketObject.ETag}}</span>
+					<button class="btn btn-danger pull-right" type="button" ng-click="deleteObject(bucketObject)">Delete</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
 	<div class="row">
 		<button class="btn btn-danger" ng-click="signout()">Sign Out</button>
 	</div>

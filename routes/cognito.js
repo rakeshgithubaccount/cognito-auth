@@ -197,8 +197,7 @@ router.get('/buckets/bucket/:bucketName', isLoggedIn, function(req, res, next) {
   AWS.config.credentials.refresh(function() {
     var s3 = new AWS.S3();
     var params = {
-        Bucket: req.params.bucketName,
-        MaxKeys: 2
+        Bucket: req.params.bucketName
     };
     s3.listObjects(params, function(err, bucketObjects) {
        if (err) {
@@ -234,6 +233,31 @@ router.get('/buckets/bucket/:bucketName/:objectKey', isLoggedIn, function(req, r
       // res.send(data.Body);
       res.send(data);           // successful response
     });
+  });
+});
+
+router.post('/deleteS3BucketObject', isLoggedIn, function(req, res, next) {
+  AWS.config.region = Auth.AWS.Region;
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: Auth.AWS.IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
+    Logins: {
+      ['cognito-idp.' + Auth.AWS.Region + '.amazonaws.com/' + Auth.AWS.UserPoolId]: req.session.cognito.idJwtToken
+    }
+  });
+
+  AWS.config.credentials.refresh(function() {
+      var s3 = new AWS.S3();
+      var params = {
+        Bucket: req.body.bucketName,
+        Key: req.body.objectName
+       };
+       s3.deleteObject(params, function(err, data) {
+         if (err) {
+           console.log(err, err.stack);
+           res.status(400).send(err);
+         }
+         res.send(data);
+       });
   });
 });
 
