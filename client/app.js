@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    var myApp = angular.module('AWS_POC', ['ui.router', 'ngFileUpload']);
+    var myApp = angular.module('AWS_POC', ['ui.router']);
     window.myApp = myApp;
 
     myApp.config(function($stateProvider) {
