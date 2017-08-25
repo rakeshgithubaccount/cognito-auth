@@ -4,11 +4,9 @@ var router = express.Router();
 var AWS = require('aws-sdk');
 var AWSCognito = require('amazon-cognito-identity-js');
 
-var Auth = require('../config/auth');
-
 var poolData = {
-    UserPoolId : Auth.AWS.UserPoolId,
-    ClientId : Auth.AWS.ClientId
+    UserPoolId : process.env.AWS_UserPoolId,
+    ClientId : process.env.AWS_ClientId
 };
 
 var userPool = new AWSCognito.CognitoUserPool(poolData);
@@ -137,11 +135,11 @@ router.get('/signout', function(req, res, next) {
 });
 
 router.post('/uploadFile/:bucketName', isLoggedIn, function(req, res, next) {
-  AWS.config.region = Auth.AWS.Region;
+  AWS.config.region = process.env.AWS_Region;
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: Auth.AWS.IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
+    IdentityPoolId: process.env.AWS_IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
     Logins: {
-      ['cognito-idp.' + Auth.AWS.Region + '.amazonaws.com/' + Auth.AWS.UserPoolId]: req.session.cognito.idJwtToken
+      ['cognito-idp.' + process.env.AWS_Region + '.amazonaws.com/' + process.env.AWS_UserPoolId]: req.session.cognito.idJwtToken
     }
   });
 
@@ -162,12 +160,12 @@ router.post('/uploadFile/:bucketName', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/buckets', isLoggedIn, function(req, res, next) {
-  AWS.config.region = Auth.AWS.Region;
+  AWS.config.region = process.env.AWS_Region;
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: Auth.AWS.IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
+    IdentityPoolId: process.env.AWS_IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
     Logins: {
       // 'cognito-idp.<region>.amazonaws.com/<YOUR_USER_POOL_ID>': session.getIdToken().getJwtToken()
-      ['cognito-idp.' + Auth.AWS.Region + '.amazonaws.com/' + Auth.AWS.UserPoolId]: req.session.cognito.idJwtToken
+      ['cognito-idp.' + process.env.AWS_Region + '.amazonaws.com/' + process.env.AWS_UserPoolId]: req.session.cognito.idJwtToken
     }
   });
 
@@ -185,12 +183,12 @@ router.get('/buckets', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/buckets/bucket/:bucketName', isLoggedIn, function(req, res, next) {
-  AWS.config.region = Auth.AWS.Region;
+  AWS.config.region = process.env.AWS_Region;
 
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: Auth.AWS.IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
+    IdentityPoolId: process.env.AWS_IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
     Logins: {
-      ['cognito-idp.' + Auth.AWS.Region + '.amazonaws.com/' + Auth.AWS.UserPoolId]: req.session.cognito.idJwtToken
+      ['cognito-idp.' + process.env.AWS_Region + '.amazonaws.com/' + process.env.AWS_UserPoolId]: req.session.cognito.idJwtToken
     }
   });
 
@@ -210,11 +208,11 @@ router.get('/buckets/bucket/:bucketName', isLoggedIn, function(req, res, next) {
 });
 
 router.get('/buckets/bucket/:bucketName/:objectKey', isLoggedIn, function(req, res, next) {
-  AWS.config.region = Auth.AWS.Region;
+  AWS.config.region = process.env.AWS_Region;
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: Auth.AWS.IdentityPoolId,
+    IdentityPoolId: process.env.AWS_IdentityPoolId,
     Logins: {
-      ['cognito-idp.' + Auth.AWS.Region + '.amazonaws.com/' + Auth.AWS.UserPoolId]: req.session.cognito.idJwtToken
+      ['cognito-idp.' + process.env.AWS_Region + '.amazonaws.com/' + process.env.AWS_UserPoolId]: req.session.cognito.idJwtToken
     }
   });
 
@@ -242,11 +240,11 @@ router.get('/buckets/bucket/:bucketName/:objectKey', isLoggedIn, function(req, r
 });
 
 router.post('/deleteS3BucketObject', isLoggedIn, function(req, res, next) {
-  AWS.config.region = Auth.AWS.Region;
+  AWS.config.region = process.env.AWS_Region;
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: Auth.AWS.IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
+    IdentityPoolId: process.env.AWS_IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
     Logins: {
-      ['cognito-idp.' + Auth.AWS.Region + '.amazonaws.com/' + Auth.AWS.UserPoolId]: req.session.cognito.idJwtToken
+      ['cognito-idp.' + process.env.AWS_Region + '.amazonaws.com/' + process.env.AWS_UserPoolId]: req.session.cognito.idJwtToken
     }
   });
 
