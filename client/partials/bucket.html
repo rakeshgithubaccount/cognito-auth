@@ -1,9 +1,9 @@
 <div class="container profile-container">
 	<div class="row">
-		<button type="button" class="btn btn-success" ng-click="listS3BucketContent()">List <b>{{bucketName}}</b> Content</button>
-	</div>
-	<div class="row">
 		<div class="well col-sm-10">
+			<div ng-if="!fetchingBucketContentComplete"  class="row">
+					<div class="loading col-md-2 col-md-offset-5"></div>
+			</div>
 			<br>
 			<br>
 			<div class="list-group s3-buckets" ng-repeat="bucketObject in bucketObjects track by $index">

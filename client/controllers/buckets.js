@@ -4,11 +4,13 @@
   myApp.controller('bucketsController', ['$scope', '$state', '$window', 'authService', function($scope, $state, $window, authService) {
       $scope.bucketList = [];
 
-      console.log('bucketsController');
+      $scope.fetchingBucketsComplete = false;
 
-      $scope.$on('$viewContentLoaded', function() {
-          console.log('viewContentLoaded');
-      });
+      // console.log('bucketsController');
+
+      // $scope.$on('$viewContentLoaded', function() {
+      //     console.log('viewContentLoaded');
+      // });
 
       $scope.signout = function() {
         var resultPromise = authService.signoutFromCognito();
@@ -26,6 +28,7 @@
           console.log('SUCCESS');
           console.log(result);
           $scope.bucketList = result.data.Buckets;
+          $scope.fetchingBucketsComplete = true;
         }, function(err) {
           console.error('Failed: ' + (err.data.message || err.data));
         });
@@ -35,6 +38,8 @@
         console.log('showBucket');
         $state.go('s3Bucket', {'bucketName': bucket.Name});
       }
+
+      $scope.listS3Buckets();
 
   }]);
 })(window.angular);

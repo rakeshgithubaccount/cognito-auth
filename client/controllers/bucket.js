@@ -4,9 +4,10 @@
   myApp.controller('bucketController', ['$scope', '$state', '$stateParams', 'authService', function($scope, $state, $stateParams, authService) {
       $scope.bucketObjects = [];
       $scope.bucketName = $stateParams.bucketName;
-      console.log($stateParams);
+      $scope.fetchingBucketContentComplete = false;
+      // console.log($stateParams);
 
-      console.log('bucketController');
+      // console.log('bucketController');
 
       $scope.listS3BucketContent = function() {
         var resultPromise = authService.getS3BucketObjects($scope.bucketName);
@@ -14,6 +15,7 @@
           console.log('SUCCESS');
           console.log(result);
           $scope.bucketObjects = result.data.Contents;
+          $scope.fetchingBucketContentComplete = true;
         }, function(err) {
           console.error('Failed: ' + (err.data.message || err.data));
         });
@@ -39,6 +41,8 @@
           console.error('Failed: ' + (err.data.message || err.data));
         });
       }
+
+      $scope.listS3BucketContent();
 
   }]);
 })(window.angular);

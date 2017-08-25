@@ -4,8 +4,9 @@
   myApp.controller('displayImageController', ['$scope', '$state', '$stateParams', 'authService', function($scope, $state, $stateParams, authService) {
       $scope.bucketName = $stateParams.bucketName;
       $scope.fileName = $stateParams.fileName;
-      console.log($stateParams);
-      console.log('displayImageController');
+      $scope.fetchingObjectComplete = false;
+      // console.log($stateParams);
+      // console.log('displayImageController');
 
       $scope.viewObject = function() {
         var resultPromise = authService.downloadObject($scope.bucketName, $scope.fileName);
@@ -13,6 +14,7 @@
           // console.log(result);
           var b64Data = _arrayBufferToBase64(result.data.Body.data);
           $scope.image = b64Data;
+          $scope.fetchingObjectComplete = true;
 
           // var canvas = document.getElementById('my-canvas');
           // var context = canvas.getContext('2d');
@@ -38,5 +40,7 @@
         }
         return window.btoa( binary );
       }
+
+      $scope.viewObject();
   }]);
 })(window.angular);
