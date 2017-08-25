@@ -129,7 +129,7 @@
 
         return deferred.promise;
       }
-      
+
       this.deleteS3BucketObject = function(bucketName, objectName) {
         var deferred = $q.defer();
         var req = {
@@ -150,5 +150,36 @@
         return deferred.promise;
       }
 
+      this.uploadObjectToS3Bucket = function(file, bucketName) {
+        var deferred = $q.defer();
+        var config = {
+           method: 'POST',
+           url: '/cognito/uploadFile/' + bucketName,
+           data: {'file': file},
+           headers: {'Content-Type': undefined},
+           transformRequest: [function (data) {
+              var formData = new window.FormData(), key;
+              data = data || config.fields || {};
+              if (config.file) {
+                data.file = config.file;
+              }
+              for (key in data) {
+                if (data.hasOwnProperty(key)) {
+                  var val = data[key];
+                    // addFieldToFormData(formData, val, key);
+                  formData.append(key, data.file, data.file.name);
+                }
+              }
+              return formData;
+            }]
+        }
+
+        $http(config).then(function(result) {
+            deferred.resolve(result);
+        }, function(err) {
+            deferred.reject(err);
+        });
+        return deferred.promise;
+      }
     }]);
 })(window.angular);

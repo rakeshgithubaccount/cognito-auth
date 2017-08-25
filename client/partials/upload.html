@@ -1,33 +1,17 @@
 <div ng-controller="uploadController">
     <div ng-show="showForm">
-<h1 class="page-header">Upload</h1>
-<div>Select the image file to upload in S3 Bucket</div>
-
-<!--<div>
-    <input class="bottom-marg-15" type="file" name="file" file/>
-    <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
-</div>-->
-     <!-- <form ref='uploadForm'
-      id='uploadForm'
-      action='/cognito/uploadFile'
-      method='post'
-      encType="multipart/form-data">
-         <br>
-
-         <input type="file" name="sampleFile" file/>
-         <input type='submit' value='Upload!' class="btn btn-success"/>
-    </form> -->
-    <br/><br/>
-    <input type="file" name="sampleFile" file/>
-    <br/><br/><br/>
-    <input type='button' value='Upload!' class="btn btn-success" id="uploadFormButton" ng-click="upload()"/>
-    <div class="">
-      {{message}}
-    </div>
+      <h1 class="page-header">Upload</h1>
+      <div>Select the image file to upload in S3 Bucket</div>
+      <br/><br/>
+      <input type="file" name="sampleFile" file/>
+      <br/><br/><br/>
+      <input type='button' value='Upload!' class="btn btn-success" id="uploadFormButton" ng-click="upload()"/>
+      <div class="">
+        {{message}}
+      </div>
     </div>
     <div ng-hide="showForm" class="afterSuccessfullUpload">
         <h1 class="page-header">Upload Successful</h1>
-        <img src="/images/smiley.png" width=200 height="200"/>
     </div>
 
 </div>

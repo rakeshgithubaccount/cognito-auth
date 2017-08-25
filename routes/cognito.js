@@ -136,7 +136,7 @@ router.get('/signout', function(req, res, next) {
   res.send('Successfully signed out.');
 });
 
-router.post('/uploadFile', isLoggedIn, function(req, res, next) {
+router.post('/uploadFile/:bucketName', isLoggedIn, function(req, res, next) {
   AWS.config.region = Auth.AWS.Region;
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: Auth.AWS.IdentityPoolId, // 'YOUR_IDENTITY_POOL_ID',
@@ -147,7 +147,7 @@ router.post('/uploadFile', isLoggedIn, function(req, res, next) {
 
   AWS.config.credentials.refresh(function() {
       var s3 = new AWS.S3();
-      var bucket = new AWS.S3({ params: { Bucket: "rakesh-s3-bucket" } });
+      var bucket = new AWS.S3({ params: { Bucket: req.params.bucketName } });
       var params = { Key: req.files.file.name, ContentType: req.files.file.mimetype, Body: req.files.file.data, ServerSideEncryption: 'AES256' };
 
       bucket.putObject(params, function(err, data) {
