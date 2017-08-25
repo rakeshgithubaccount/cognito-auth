@@ -10,7 +10,7 @@
           var resultPromise = authService.signinToCognito($scope.username, $scope.password);
           resultPromise.then(function(result) {
             console.log('Successfully logged in');
-            $state.go("dashboard");
+            $state.go("list");
           }, function(err) {
             console.error('Failed: ' + (err.data.message || err.data));
           });

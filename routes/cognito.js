@@ -225,7 +225,7 @@ router.get('/buckets/bucket/:bucketName/:objectKey', isLoggedIn, function(req, r
      Key: req.params.objectKey
     };
 
-    s3.getObject(params, function(err, data) {
+    var request = s3.getObject(params, function(err, data) {
       if (err) {
          res.status(400).send('err'); // an error occurred
       }
@@ -233,6 +233,11 @@ router.get('/buckets/bucket/:bucketName/:objectKey', isLoggedIn, function(req, r
       // res.send(data.Body);
       res.send(data);           // successful response
     });
+
+    request.on('httpDownloadProgress', function(progress, response){
+      // console.log(progress);
+      // console.log((progress.loaded / (+progress.total) * 100) + '%');
+    })
   });
 });
 

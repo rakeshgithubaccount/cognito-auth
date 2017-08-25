@@ -113,3 +113,7 @@ form#uploadForm input[type="file"]{
     height: 30px;
     margin: auto;
   }
+
+  .hover {
+    cursor: pointer;
+  }

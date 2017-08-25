@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    var myApp = angular.module('AWS_POC', ['ui.router']);
+    var myApp = angular.module('AWS_POC', ['ui.router', 'angular-loading-bar', 'ngAnimate']);
     window.myApp = myApp;
 
     myApp.config(function($stateProvider) {
