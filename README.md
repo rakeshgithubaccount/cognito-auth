@@ -1,9 +1,9 @@
 # cognito-auth
 
-Set following env variables 
+Set following env variables
 
-AWS_UserPoolId
-AWS_ClientId
-AWS_Region
-AWS_IdentityPoolId
+AWS_UserPoolId,
+AWS_ClientId,
+AWS_Region,
+AWS_IdentityPoolId, 
 PORT
