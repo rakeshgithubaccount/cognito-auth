@@ -1,7 +1,7 @@
   body {
     padding-top: 50px;
     padding-bottom: 40px;
-    background-color: #eee;
+    background: none!important
 
   }
   .btn
@@ -117,3 +117,19 @@ form#uploadForm input[type="file"]{
   .hover {
     cursor: pointer;
   }
+#mainNav.fixed-top .navbar-sidenav a{
+    
+    color:#ffffff;
+}
+#mainNav.fixed-top .navbar-sidenav {
+    height: calc(100vh - 56px)!important;
+    background: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg') repeat 50%;
+    background-size: cover;
+}
+.content-wrapper {
+    min-height: calc(100vh - 112px)!important;
+}
+.bg-dark {
+    background: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg') repeat 50%;
+    background-size: cover;
+}
